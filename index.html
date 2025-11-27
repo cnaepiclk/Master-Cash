@@ -13,10 +13,9 @@
         .text-red { color: #d32f2f !important; }
         .text-green { color: #2e7d32 !important; }
         .text-black { color: #000 !important; }
-        .hidden { display: none !important; }
-
+        
         /* ============================
-           MAIN MENU DESIGN (UPDATED)
+           MAIN MENU
            ============================ */
         #main-menu { 
             background-color: #6200ea; 
@@ -24,11 +23,10 @@
             padding: 20px; 
             box-sizing: border-box; 
             display: grid; 
-            grid-template-columns: 1fr 1fr; /* Two columns */
-            gap: 15px; /* Space between cards */
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
             align-content: flex-start;
         }
-
         .app-item { 
             background-color: #ffffff; 
             border-radius: 25px; 
@@ -39,146 +37,164 @@
             cursor: pointer; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.1s;
-            height: 160px; /* Taller button */
-            -webkit-tap-highlight-color: transparent; 
+            height: 160px; 
+            overflow: hidden;
         }
-
         .app-item:active { transform: scale(0.95); opacity: 0.9; }
-
-        /* Logo Styling - FULL SIZE */
-        .menu-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Ensures logo fits nicely without cropping */
-            display: block;
-        }
+        .menu-img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
         /* ============================
-           WALLET VIEW (SHARED)
+           WALLET (MOBCASH) STYLES - FIXED
            ============================ */
         #wallet-view { display: none; min-height: 100vh; padding: 20px; padding-bottom: 80px; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .icon-btn { width: 40px; height: 40px; background: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-size: 18px; color: #333; cursor: pointer; }
-        .page-title { font-size: 18px; font-weight: bold; }
+        .page-title { font-size: 18px; font-weight: bold; text-align: center; flex-grow: 1; }
         
         .balance-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 15px; }
         .epos-label { font-size: 14px; color: #666; margin-bottom: 5px; }
         .main-amount { font-size: 28px; font-weight: 800; margin-bottom: 5px; }
         .sub-balance { font-size: 14px; color: #555; margin-bottom: 15px; }
-        
-        .progress-bg { background: #e0e0e0; height: 8px; border-radius: 10px; width: 100%; overflow: hidden; position: relative; }
+        .progress-bg { background: #e0e0e0; height: 8px; border-radius: 10px; width: 100%; overflow: hidden; }
         .progress-fill { background: #4c6ef5; height: 100%; width: 0%; border-radius: 10px; transition: width 0.5s ease-in-out; }
 
         .action-buttons { display: flex; gap: 15px; margin-bottom: 25px; }
         .action-btn { flex: 1; background: white; padding: 15px; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; }
-        .action-btn:active { transform: scale(0.95); }
-        .btn-green { color: #2e7d32; } .btn-red { color: #c62828; }
         .action-btn i { font-size: 20px; margin-bottom: 8px; }
         .action-btn span { font-size: 14px; font-weight: 500; }
-        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .section-title { font-weight: bold; font-size: 16px; }
+        .btn-green { color: #2e7d32; } .btn-red { color: #c62828; }
 
-        /* HISTORY VIEW */
+        /* --- FIXED TRANSACTION CARD STYLES --- */
+        .transaction-item { 
+            background: white; 
+            border-radius: 15px; 
+            padding: 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 10px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03); 
+            cursor: pointer; 
+        }
+        
+        .trans-left-group {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .trans-icon { 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 12px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            margin-right: 15px; 
+            font-size: 18px;
+            flex-shrink: 0; 
+        }
+        .icon-deposit { background: #e8f5e9; color: #2e7d32; }
+        .icon-withdraw { background: #ffebee; color: #c62828; }
+        
+        .trans-details { 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .trans-id { font-weight: bold; font-size: 15px; display: block; }
+        .trans-sub { font-size: 12px; color: #888; margin-top: 3px; display: block; }
+
+        .trans-right-group { 
+            text-align: right; 
+            min-width: 100px;
+        }
+        .amount-val { font-weight: bold; font-size: 15px; display: block; margin-bottom: 3px; }
+        .amount-date { font-size: 11px; color: #999; display: block; }
+
+        /* ============================
+           MASTER CASH STYLES
+           ============================ */
+        #master-cash-view { display: none; min-height: 100vh; padding: 15px; background: white; box-sizing: border-box; }
+        .mc-top-actions { display: flex; gap: 10px; margin-bottom: 20px; }
+        .mc-big-btn { flex: 1; padding: 12px; border-radius: 8px; color: white; font-weight: bold; text-align: center; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .mc-bg-green { background-color: #2e7d32; } .mc-bg-red { background-color: #c62828; }
+        .ledger-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 15px; table-layout: fixed; }
+        .ledger-table th { background-color: #e0e0e0; border: 2px solid #000; padding: 10px; font-weight: bold; text-transform: uppercase; width: 50%; }
+        .ledger-table td { border: 1px solid #000; padding: 10px 5px; text-align: center; font-weight: 600; height: 35px; vertical-align: middle; }
+        .t-row-filled:active { background-color: #f0f0f0; }
+        .table-footer td { background-color: #f9f9f9; border: 2px solid #000; font-weight: bold; font-size: 16px; }
+        .mc-balance-box { border: 2px solid #000; padding: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 18px; background: #f3f4f6; margin-top: 10px; }
+
+        /* ============================
+           OTHER VIEWS (Salary/History)
+           ============================ */
         #history-view { display: none; min-height: 100vh; padding: 20px; background-color: #f8f9fa; }
-        .history-header-title { text-align: center; flex-grow: 1; }
-        .h-title { font-size: 18px; font-weight: bold; display: block; }
-        .h-date { font-size: 12px; color: #666; display: block; margin-top: 2px; }
         .summary-box { background: white; border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .summary-item { text-align: center; flex: 1; }
-        .sum-label { font-size: 12px; color: #666; display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 5px; }
-        .sum-val { font-size: 18px; font-weight: bold; }
-        .divider-line { width: 1px; height: 40px; background: #eee; margin: 0 10px; }
         .filter-tabs { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 0; }
         .tab { font-size: 14px; color: #666; padding: 10px 15px; cursor: pointer; position: relative; background: none; border: none; font-weight: 500; }
         .tab.active { color: #4c6ef5; font-weight: bold; }
-        .tab.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 3px; background-color: #4c6ef5; border-radius: 3px 3px 0 0; }
-        .search-bar { background: #e9ecef; border-radius: 12px; padding: 10px 15px; display: flex; align-items: center; margin-bottom: 15px; color: #666; }
-        .search-bar i { margin-right: 10px; }
+        .tab.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 3px; background-color: #4c6ef5; }
+        
+        #salary-view { display: none; min-height: 100vh; padding: 20px; background-color: #f3f4f6; }
+        .salary-input { width: 100%; padding: 15px; border: none; border-radius: 12px; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); outline: none; margin-bottom: 15px; box-sizing: border-box; }
+        .add-user-btn { background-color: #6200ea; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 20px; }
+        .user-card { background: white; border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
 
-        /* SUB AGENT COMMISSION VIEW */
-        #salary-view { display: none; min-height: 100vh; padding: 20px; background-color: #f3f4f6; box-sizing: border-box; }
-        .salary-input-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; width: 100%; }
-        .salary-input { width: 100%; padding: 15px; border: none; border-radius: 12px; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); outline: none; box-sizing: border-box; }
-        .add-user-btn { background-color: #6200ea; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(98, 0, 234, 0.3); }
-        .user-card { background: white; border-radius: 15px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; cursor: pointer; position: relative; }
-        .user-info { flex-grow: 1; }
-        .user-name { font-weight: bold; font-size: 16px; color: #333; }
-        .user-phone { font-size: 13px; color: #888; margin-bottom: 8px; }
-        .user-stats { display: flex; gap: 15px; font-size: 13px; font-weight: 600; }
-        .delete-user-btn { width: 40px; height: 40px; background: #ffebee; color: #c62828; border-radius: 10px; display: flex; justify-content: center; align-items: center; cursor: pointer; margin-left: 10px; flex-shrink: 0; }
-
-        /* COMPONENTS & MODALS */
-        .transaction-item { background: white; border-radius: 15px; padding: 15px; display: flex; align-items: center; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); cursor: pointer; }
-        .trans-icon { width: 45px; height: 45px; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-size: 18px; }
-        .icon-deposit { background: #e8f5e9; color: #2e7d32; }
-        .icon-withdraw { background: #ffebee; color: #c62828; }
-        .trans-details { flex-grow: 1; }
-        .trans-id { font-weight: bold; font-size: 15px; }
-        .trans-sub { font-size: 12px; color: #888; margin-top: 2px; }
-        .trans-amount { text-align: right; }
-        .amount-val { font-weight: bold; font-size: 15px; display: block; }
-        .amount-date { font-size: 11px; color: #999; display: block; margin-top: 3px; }
-
+        /* MODALS */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background: white; padding: 25px; border-radius: 20px; width: 80%; max-width: 300px; text-align: center; }
         .amount-input { width: 100%; padding: 10px; font-size: 20px; border: 2px solid #e0e0e0; border-radius: 10px; margin-bottom: 20px; text-align: center; outline: none; box-sizing: border-box; }
         .modal-btns { display: flex; gap: 10px; margin-top: 10px; }
         .m-btn { flex: 1; padding: 10px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; }
-        .btn-confirm { background: #6200ea; color: white; }
-        .btn-cancel { background: #e0e0e0; color: #333; }
-        .btn-delete { background: #ffebee; color: #c62828; }
+        .btn-confirm { background: #6200ea; color: white; } .btn-cancel { background: #e0e0e0; color: #333; } .btn-delete { background: #ffebee; color: #c62828; }
 
-        /* CALENDAR */
-        #calendar-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: flex-end; z-index: 2000; }
+        /* CALENDARS */
+        #calendar-modal, #mc-calendar-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: flex-end; z-index: 2000; }
         .cal-content { background: white; width: 100%; border-top-left-radius: 25px; border-top-right-radius: 25px; padding: 25px; animation: slideUp 0.3s ease-out; max-height: 85vh; overflow-y: auto; box-sizing: border-box; }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .cal-title { font-size: 18px; font-weight: bold; }
         .cal-month-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: #f8f9fa; padding: 10px; border-radius: 12px; }
-        .month-year-text { font-weight: bold; font-size: 16px; }
-        .nav-arrow { padding: 5px 15px; cursor: pointer; font-size: 18px; color: #4c6ef5; }
-        .weekdays-grid { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 12px; color: #666; margin-bottom: 10px; }
         .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; text-align: center; }
         .day-cell { height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 50%; cursor: pointer; font-size: 14px; }
         .day-cell:hover { background-color: #f0f2f5; }
         .day-cell.selected { background-color: #4c6ef5; color: white; }
         .cal-apply-btn { width: 100%; background-color: #4c6ef5; color: white; padding: 15px; border: none; border-radius: 15px; font-size: 16px; font-weight: bold; margin-top: 20px; cursor: pointer; }
-
+        
+        .detail-row { margin-bottom: 15px; text-align: left; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .detail-label { font-size: 12px; color: #666; display: block; }
+        .detail-value { font-size: 16px; font-weight: bold; display: block; margin-top: 2px; }
     </style>
 </head>
 <body>
 
-    <!-- MAIN MENU (UPDATED - CLEANER LOOK) -->
+    <!-- MAIN MENU -->
     <div id="main-menu">
-        <!-- Mobcash Button (No Text) -->
         <div class="app-item" onclick="openMainMobcash()">
             <img src="https://i.postimg.cc/yxnBGHqs/1764182391625-019ac176-d3bf-787a-8860-82612ae998ae.png" class="menu-img" alt="Mobcash">
         </div>
-
-        <!-- Sub Agent Commission Button (No Text) -->
         <div class="app-item" onclick="openSalaryView()">
             <img src="https://i.postimg.cc/wMr4MfLX/1764182484915-019ac178-3ef9-7783-a27a-fe4912b12e2c.png" class="menu-img" alt="Commission">
         </div>
+        <div class="app-item" onclick="openMasterCash()">
+            <img src="https://i.postimg.cc/mDvBkP6D/Binance-Coin-Analysis-Can-BNB-Price-Hit-800-After-This-Signal-Just-Flashed.webp" class="menu-img" alt="Master Cash">
+        </div>
     </div>
 
-    <!-- SUB AGENT COMMISSION VIEW -->
+    <!-- SUB AGENT VIEW -->
     <div id="salary-view">
         <div class="header">
             <div class="icon-btn" onclick="goBackToMain()"><i class="fas fa-arrow-left"></i></div>
             <div class="page-title">Sub Agent Commission</div>
             <div class="icon-btn" style="visibility: hidden;"></div>
         </div>
-
-        <div class="salary-input-container">
-            <input type="text" id="salary-name" class="salary-input" placeholder="Enter Name">
-            <input type="number" id="salary-phone" class="salary-input" placeholder="Enter Phone Number">
-        </div>
+        <input type="text" id="salary-name" class="salary-input" placeholder="Enter Name">
+        <input type="number" id="salary-phone" class="salary-input" placeholder="Enter Phone Number">
         <button class="add-user-btn" onclick="addSalaryUser()">Add Sub Agent</button>
-
         <div id="salary-user-list"></div>
     </div>
 
-    <!-- WALLET VIEW (SHARED) -->
+    <!-- WALLET VIEW (MOBCASH) -->
     <div id="wallet-view">
         <div class="header">
             <div class="icon-btn" onclick="exitWallet()"><i class="fas fa-arrow-left"></i></div>
@@ -189,36 +205,31 @@
             <div class="epos-label">EPOS limit</div>
             <div class="main-amount" id="display-epos">0.00 Re</div>
             <div class="sub-balance" id="display-balance">Balance: 0.00 Re</div>
-            <!-- Progress Bar -->
             <div class="progress-bg"><div class="progress-fill" id="progress-bar"></div></div>
         </div>
         <div class="action-buttons">
             <div class="action-btn btn-green" onclick="openAddModal('deposit')"><i class="fas fa-arrow-down"></i><span>Deposit</span></div>
             <div class="action-btn btn-red" onclick="openAddModal('withdraw')"><i class="fas fa-arrow-up"></i><span>Withdraw</span></div>
         </div>
-        <div class="section-header">
-            <span class="section-title">Recent transactions</span>
-            <i class="fas fa-external-link-alt" style="color: #4c6ef5; cursor: pointer; font-size: 18px;" onclick="openHistory()"></i>
+        <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+            <span style="font-weight:bold;">Recent transactions</span>
+            <i class="fas fa-external-link-alt" style="color: #4c6ef5; cursor: pointer;" onclick="openHistory()"></i>
         </div>
-        <div class="transactions-list" id="wallet-trans-list"></div>
+        <div id="wallet-trans-list"></div>
     </div>
 
     <!-- HISTORY VIEW -->
     <div id="history-view">
         <div class="header">
             <div class="icon-btn" onclick="closeHistory()"><i class="fas fa-arrow-left"></i></div>
-            <div class="history-header-title">
-                <span class="h-title">Transactions</span>
-                <span class="h-date" id="history-active-date">Today</span>
-            </div>
+            <div class="page-title" id="history-active-date">Today</div>
             <div class="icon-btn" onclick="openCalendar()"><i class="far fa-calendar-alt"></i></div>
         </div>
         <div class="summary-box">
-            <div class="summary-item"><div class="sum-label sum-green"><i class="fas fa-arrow-down"></i> Deposit</div><div class="sum-val sum-green" id="total-deposit">0.00</div></div>
-            <div class="divider-line"></div>
-            <div class="summary-item"><div class="sum-label sum-red"><i class="fas fa-arrow-up"></i> Withdrawal</div><div class="sum-val sum-red" id="total-withdraw">0.00</div></div>
+            <div style="text-align:center; flex:1;"><div class="text-green"><i class="fas fa-arrow-down"></i> Deposit</div><div class="text-green" style="font-size:18px; font-weight:bold;" id="total-deposit">0.00</div></div>
+            <div style="width:1px; height:40px; background:#eee;"></div>
+            <div style="text-align:center; flex:1;"><div class="text-red"><i class="fas fa-arrow-up"></i> Withdrawal</div><div class="text-red" style="font-size:18px; font-weight:bold;" id="total-withdraw">0.00</div></div>
         </div>
-        <div class="search-bar"><i class="fas fa-search"></i><span>Enter WebUser ID...</span></div>
         <div class="filter-tabs">
             <button class="tab active" onclick="setFilter('all', this)">All</button>
             <button class="tab" onclick="setFilter('deposit', this)">Deposits</button>
@@ -227,10 +238,34 @@
         <div id="history-trans-list"></div>
     </div>
 
-    <!-- MODALS -->
+    <!-- MASTER CASH VIEW -->
+    <div id="master-cash-view">
+        <div class="header">
+            <div class="icon-btn" onclick="exitMasterCash()"><i class="fas fa-arrow-left"></i></div>
+            <div class="page-title">Master Cash</div>
+            <div class="icon-btn" onclick="openMCCalendar()"><i class="far fa-calendar-alt"></i></div>
+        </div>
+        <div style="text-align: center; margin-bottom: 10px; font-weight: bold; color: #555;" id="mc-current-date-display">Today</div>
+        <div class="mc-top-actions">
+            <div class="mc-big-btn mc-bg-green" onclick="openMCAddModal('deposit')">Deposit (+)</div>
+            <div class="mc-big-btn mc-bg-red" onclick="openMCAddModal('withdraw')">Withdraw (-)</div>
+        </div>
+        <table class="ledger-table">
+            <thead><tr><th>DEPOSIT</th><th>WITHDRAW</th></tr></thead>
+            <tbody id="mc-ledger-body"></tbody>
+            <tfoot class="table-footer">
+                <tr><td class="text-green" id="mc-total-dep-display">0</td><td class="text-red" id="mc-total-with-display">0</td></tr>
+            </tfoot>
+        </table>
+        <div class="mc-balance-box">
+            <span>Balance:</span><span id="mc-ledger-balance">0 Re</span>
+        </div>
+    </div>
+
+    <!-- MOBCASH MODALS -->
     <div id="add-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-title" id="add-modal-title">Enter Amount</div>
+            <div class="page-title" id="add-modal-title">Enter Amount</div>
             <input type="number" class="amount-input" id="add-amount-input" placeholder="0.00">
             <div class="modal-btns">
                 <button class="m-btn btn-cancel" onclick="closeAddModal()">Cancel</button>
@@ -241,11 +276,9 @@
 
     <div id="edit-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-title">Edit Transaction</div>
+            <div class="page-title">Edit Transaction</div>
             <input type="number" class="amount-input" id="edit-amount-input">
-            <div class="modal-btns">
-                <button class="m-btn btn-delete" onclick="deleteTransaction()">Delete</button>
-            </div>
+            <div class="modal-btns"><button class="m-btn btn-delete" onclick="deleteTransaction()">Delete</button></div>
             <div class="modal-btns">
                 <button class="m-btn btn-cancel" onclick="closeEditModal()">Cancel</button>
                 <button class="m-btn btn-confirm" onclick="saveEditTransaction()">Save</button>
@@ -255,58 +288,97 @@
 
     <div id="calendar-modal">
         <div class="cal-content">
-            <div class="cal-header"><div class="icon-btn" onclick="closeCalendar()"><i class="fas fa-arrow-left"></i></div><span class="cal-title">Select period</span><div style="width: 40px;"></div></div>
-            <h2 id="cal-selected-display" style="text-align:center; margin-bottom:20px;">Date</h2>
+            <div class="cal-header"><div class="icon-btn" onclick="closeCalendar()"><i class="fas fa-arrow-left"></i></div><span style="font-size:18px; font-weight:bold;">Select Date</span><div></div></div>
             <div class="cal-month-nav">
-                <div class="nav-arrow" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></div>
-                <div class="month-year-text" id="cal-month-year">Nov 2025</div>
-                <div class="nav-arrow" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></div>
+                <div style="padding:5px 15px;" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></div>
+                <div id="cal-month-year" style="font-weight:bold;">--</div>
+                <div style="padding:5px 15px;" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></div>
             </div>
-            <div class="weekdays-grid"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
             <div class="days-grid" id="days-container"></div>
             <button class="cal-apply-btn" onclick="applyDateFilter()">Apply</button>
         </div>
     </div>
 
+    <!-- MASTER CASH MODALS -->
+    <div id="mc-add-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="page-title" style="margin-bottom: 15px;" id="mc-add-modal-title">Enter Amount</div>
+            <input type="number" class="amount-input" id="mc-add-amount-input" placeholder="0.00">
+            <div class="modal-btns">
+                <button class="m-btn btn-cancel" onclick="closeMCAddModal()">Cancel</button>
+                <button class="m-btn btn-confirm" onclick="processMCTransaction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mc-details-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Details</h3>
+            <div class="detail-row"><span class="detail-label">Time</span><span class="detail-value" id="mc-detail-time">--</span></div>
+            <div class="detail-row"><span class="detail-label">Type</span><span class="detail-value" id="mc-detail-type">--</span></div>
+            <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value" id="mc-detail-amount" style="font-size: 24px;">--</span></div>
+            <div class="modal-btns">
+                <button class="m-btn" style="background:#e3f2fd; color:#1565c0;" onclick="switchToMCEdit()">Edit</button>
+                <button class="m-btn btn-delete" onclick="deleteMCTransaction()">Delete</button>
+            </div>
+            <div class="modal-btns" style="margin-top:5px;"><button class="m-btn btn-cancel" onclick="closeMCDetailsModal()">Close</button></div>
+        </div>
+    </div>
+
+    <div id="mc-edit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="page-title" style="margin-bottom: 15px;">Edit Amount</div>
+            <input type="number" class="amount-input" id="mc-edit-amount-input">
+            <div class="modal-btns">
+                <button class="m-btn btn-cancel" onclick="closeMCEditModal()">Cancel</button>
+                <button class="m-btn btn-confirm" onclick="saveMCEditTransaction()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="mc-calendar-modal">
+        <div class="cal-content">
+            <div class="cal-header"><div class="icon-btn" onclick="closeMCCalendar()"><i class="fas fa-arrow-left"></i></div><span style="font-size:18px; font-weight:bold;">Select Date (MC)</span><div></div></div>
+            <div class="cal-month-nav">
+                <div style="padding:5px 15px;" onclick="changeMCMonth(-1)"><i class="fas fa-chevron-left"></i></div>
+                <div id="mc-cal-month-year" style="font-weight:bold;">--</div>
+                <div style="padding:5px 15px;" onclick="changeMCMonth(1)"><i class="fas fa-chevron-right"></i></div>
+            </div>
+            <div class="days-grid" id="mc-days-container"></div>
+            <button class="cal-apply-btn" onclick="applyMCDateFilter()">Show History</button>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT -->
     <script>
-        // State
+        // ==========================================
+        // 1. SHARED & MOBCASH LOGIC
+        // ==========================================
         let mainMobcashTransactions = []; 
         let salaryUsers = []; 
-        let activeContextId = null; // null = Main Mobcash, ID = Salary User
-        
-        // Filter State
+        let activeContextId = null;
         let activeFilterDateKey = formatDateKey(new Date());
         let activeTab = 'all';
         let editingTransactionId = null;
 
-        // Calendar State
         let tempSelectedDate = new Date();
         let calMonth = new Date().getMonth();
         let calYear = new Date().getFullYear();
 
         window.onload = function() {
-            loadAllData(); // Load data on start
+            loadAllData(); 
+            loadMasterCashData();
         }
 
-        // --- STORAGE MANAGEMENT (Recovering Previous Data) ---
         function loadAllData() {
             const mainSaved = localStorage.getItem('mobcash_pro_data_v4');
             if (mainSaved) mainMobcashTransactions = JSON.parse(mainSaved);
-
             const salarySaved = localStorage.getItem('mobcash_salary_data');
             if (salarySaved) salaryUsers = JSON.parse(salarySaved);
         }
+        function saveMainData() { localStorage.setItem('mobcash_pro_data_v4', JSON.stringify(mainMobcashTransactions)); }
+        function saveSalaryData() { localStorage.setItem('mobcash_salary_data', JSON.stringify(salaryUsers)); }
 
-        function saveMainData() {
-            localStorage.setItem('mobcash_pro_data_v4', JSON.stringify(mainMobcashTransactions));
-        }
-
-        function saveSalaryData() {
-            localStorage.setItem('mobcash_salary_data', JSON.stringify(salaryUsers));
-        }
-
-        // --- CONTEXT HELPERS ---
         function getCurrentTransactions() {
             if (activeContextId === null) return mainMobcashTransactions;
             const user = salaryUsers.find(u => u.id === activeContextId);
@@ -327,7 +399,7 @@
             }
         }
 
-        // --- NAVIGATION ---
+        // NAVIGATION
         function openMainMobcash() {
             activeContextId = null;
             document.getElementById('wallet-title').innerText = "ID 1405105";
@@ -335,57 +407,41 @@
             document.getElementById('wallet-view').style.display = 'block';
             updateWalletUI();
         }
-
         function openSalaryView() {
             document.getElementById('main-menu').style.display = 'none';
             document.getElementById('salary-view').style.display = 'block';
             renderSalaryUsers();
         }
-
         function goBackToMain() {
             document.getElementById('salary-view').style.display = 'none';
             document.getElementById('wallet-view').style.display = 'none';
-            document.getElementById('main-menu').style.display = 'grid'; // Changed to grid
+            document.getElementById('master-cash-view').style.display = 'none';
+            document.getElementById('main-menu').style.display = 'grid';
         }
-
         function exitWallet() {
             document.getElementById('wallet-view').style.display = 'none';
-            if (activeContextId === null) {
-                document.getElementById('main-menu').style.display = 'grid'; // Changed to grid
-            } else {
-                document.getElementById('salary-view').style.display = 'block';
-            }
+            if (activeContextId === null) document.getElementById('main-menu').style.display = 'grid';
+            else document.getElementById('salary-view').style.display = 'block';
         }
 
-        // --- SALARY / SUB AGENT FUNCTIONS ---
+        // SALARY FUNCTIONS
         function addSalaryUser() {
             const name = document.getElementById('salary-name').value;
             const phone = document.getElementById('salary-phone').value;
-
             if(!name || !phone) { alert("Please enter Name and Phone"); return; }
-
-            const newUser = {
-                id: Date.now().toString(),
-                name: name,
-                phone: phone,
-                transactions: []
-            };
-
+            const newUser = { id: Date.now().toString(), name: name, phone: phone, transactions: [] };
             salaryUsers.unshift(newUser);
             saveSalaryData();
             renderSalaryUsers();
-            
             document.getElementById('salary-name').value = '';
             document.getElementById('salary-phone').value = '';
         }
-
         function deleteUser(id) {
             if(!confirm("Delete this user?")) return;
             salaryUsers = salaryUsers.filter(u => u.id !== id);
             saveSalaryData();
             renderSalaryUsers();
         }
-
         function openUserWallet(id) {
             activeContextId = id;
             const user = salaryUsers.find(u => u.id === id);
@@ -394,118 +450,68 @@
             document.getElementById('wallet-view').style.display = 'block';
             updateWalletUI();
         }
-
         function renderSalaryUsers() {
             const list = document.getElementById('salary-user-list');
             list.innerHTML = '';
-
             salaryUsers.forEach(user => {
-                let totalDep = 0;
-                let totalWith = 0;
-                user.transactions.forEach(t => {
-                    if(t.type === 'deposit') totalDep += t.amount;
-                    else totalWith += t.amount;
-                });
-
-                const card = `
-                <div class="user-card" onclick="openUserWallet('${user.id}')">
-                    <div class="user-info">
-                        <div class="user-name">${user.name}</div>
-                        <div class="user-phone">${user.phone}</div>
-                        <div class="user-stats">
-                            <span class="text-green">Dep: ${formatMoney(totalDep)}</span> &nbsp;|&nbsp; 
-                            <span class="text-red">With: ${formatMoney(totalWith)}</span>
-                        </div>
-                    </div>
-                    <div class="delete-user-btn" onclick="event.stopPropagation(); deleteUser('${user.id}')">
-                        <i class="fas fa-trash-alt"></i>
-                    </div>
-                </div>`;
+                let totalDep = 0; let totalWith = 0;
+                user.transactions.forEach(t => { if(t.type === 'deposit') totalDep += t.amount; else totalWith += t.amount; });
+                const card = `<div class="user-card" onclick="openUserWallet('${user.id}')">
+                    <div><div style="font-weight:bold;">${user.name}</div><div style="font-size:13px; color:#888;">${user.phone}</div>
+                    <div style="font-size:13px; font-weight:600;"><span class="text-green">Dep: ${formatMoney(totalDep)}</span> | <span class="text-red">With: ${formatMoney(totalWith)}</span></div></div>
+                    <div onclick="event.stopPropagation(); deleteUser('${user.id}')" style="color:#c62828; padding:10px;"><i class="fas fa-trash-alt"></i></div></div>`;
                 list.innerHTML += card;
             });
         }
 
-        // --- WALLET LOGIC ---
-        function calculateBalance(transactions) {
-            let balance = 0;
-            transactions.forEach(t => {
-                if (t.type === 'deposit') balance += t.amount;
-                else balance -= t.amount;
-            });
-            return balance;
-        }
-
+        // WALLET UI & ACTIONS
         function updateWalletUI() {
             const currentTrans = getCurrentTransactions();
-            const balance = calculateBalance(currentTrans);
+            let balance = 0;
+            currentTrans.forEach(t => { if (t.type === 'deposit') balance += t.amount; else balance -= t.amount; });
             const formatted = formatMoney(balance) + " Re";
-            
-            const balEl = document.getElementById('display-balance');
-            const eposEl = document.getElementById('display-epos');
-            const progressEl = document.getElementById('progress-bar');
-
-            if (balance < 0) {
-                eposEl.classList.add('text-red'); eposEl.classList.remove('text-black');
-                balEl.innerHTML = `Balance: <span class="text-red">${formatted}</span>`;
-            } else {
-                eposEl.classList.remove('text-red'); eposEl.classList.add('text-black');
-                balEl.innerHTML = `Balance: ${formatted}`;
-            }
-            eposEl.innerText = formatted;
-
-            // Blue Progress Bar Logic
+            document.getElementById('display-balance').innerHTML = `Balance: ${formatted}`;
+            document.getElementById('display-epos').innerText = formatted;
             let percentage = (balance / 200000) * 100;
-            if (percentage < 0) percentage = 0;
-            if (percentage > 100) percentage = 100;
-            progressEl.style.width = percentage + "%";
-
+            if (percentage < 0) percentage = 0; if (percentage > 100) percentage = 100;
+            document.getElementById('progress-bar').style.width = percentage + "%";
             const list = document.getElementById('wallet-trans-list');
             list.innerHTML = '';
             currentTrans.slice(0, 5).forEach(t => list.innerHTML += createTransHTML(t));
         }
 
-        // --- HISTORY VIEW ---
         function openHistory() { 
             document.getElementById('wallet-view').style.display = 'none'; 
             document.getElementById('history-view').style.display = 'block'; 
-            setFilter('all', document.querySelector('.filter-tabs .tab')); 
+            renderHistory(); 
         }
-        
         function closeHistory() { 
             document.getElementById('history-view').style.display = 'none'; 
             document.getElementById('wallet-view').style.display = 'block'; 
             updateWalletUI();
         }
-
         function setFilter(type, btn) {
             activeTab = type;
             document.querySelectorAll('.filter-tabs .tab').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
             renderHistory();
         }
-
         function renderHistory() {
             const currentTrans = getCurrentTransactions();
             const dayTransactions = currentTrans.filter(t => t.dateString === activeFilterDateKey);
-            
             let dayDep = 0, dayWith = 0;
             dayTransactions.forEach(t => { if(t.type === 'deposit') dayDep += t.amount; else dayWith += t.amount; });
-            
             document.getElementById('history-active-date').innerText = activeFilterDateKey === formatDateKey(new Date()) ? "Today" : activeFilterDateKey;
             document.getElementById('total-deposit').innerText = formatMoney(dayDep);
             document.getElementById('total-withdraw').innerText = formatMoney(dayWith);
-            
             let listToShow = dayTransactions;
             if(activeTab === 'deposit') listToShow = dayTransactions.filter(t => t.type === 'deposit');
             else if (activeTab === 'withdraw') listToShow = dayTransactions.filter(t => t.type === 'withdraw');
-            
             const list = document.getElementById('history-trans-list');
             list.innerHTML = '';
-            if(listToShow.length === 0) list.innerHTML = '<div style="text-align:center; padding:30px; color:#999;">No transactions</div>';
-            else listToShow.forEach(t => list.innerHTML += createTransHTML(t));
+            listToShow.forEach(t => list.innerHTML += createTransHTML(t));
         }
 
-        // --- ACTIONS (Add/Edit/Delete) ---
         function openAddModal(type) {
             window.currentType = type;
             document.getElementById('add-modal-title').innerText = type === 'deposit' ? 'Deposit Amount' : 'Withdraw Amount';
@@ -514,30 +520,23 @@
             document.getElementById('add-amount-input').focus();
         }
         function closeAddModal() { document.getElementById('add-modal').style.display = 'none'; }
-
         function processTransaction() {
             const amount = parseFloat(document.getElementById('add-amount-input').value);
             if (isNaN(amount) || amount <= 0) { alert("Valid amount required"); return; }
-
             const now = new Date();
             const newTrans = {
                 uuid: Date.now() + Math.random().toString(36).substr(2, 9),
-                type: window.currentType,
-                amount: amount,
+                type: window.currentType, amount: amount, 
                 id: Math.floor(Math.random() * 1000),
                 longId: Math.floor(1000000000 + Math.random() * 9000000000),
-                dateString: formatDateKey(now), 
-                timeString: formatTime(now),
-                timestamp: now.getTime()
+                dateString: formatDateKey(now), timeString: formatTime(now), timestamp: now.getTime()
             };
-
             let currentTrans = getCurrentTransactions();
             currentTrans.unshift(newTrans);
             saveCurrentTransactions(currentTrans);
             updateWalletUI();
             closeAddModal();
         }
-
         function openEditModal(uuid) {
             const currentTrans = getCurrentTransactions();
             const trans = currentTrans.find(t => t.uuid === uuid);
@@ -545,17 +544,13 @@
             editingTransactionId = uuid;
             document.getElementById('edit-amount-input').value = trans.amount;
             document.getElementById('edit-modal').style.display = 'flex';
-            document.getElementById('edit-amount-input').focus();
         }
         function closeEditModal() { document.getElementById('edit-modal').style.display = 'none'; editingTransactionId = null; }
-
         function saveEditTransaction() {
             const newAmount = parseFloat(document.getElementById('edit-amount-input').value);
-            if (isNaN(newAmount) || newAmount <= 0) { alert("Invalid amount"); return; }
-            
+            if (isNaN(newAmount) || newAmount <= 0) return;
             let currentTrans = getCurrentTransactions();
             const transIndex = currentTrans.findIndex(t => t.uuid === editingTransactionId);
-            
             if (transIndex !== -1) {
                 currentTrans[transIndex].amount = newAmount;
                 saveCurrentTransactions(currentTrans);
@@ -564,7 +559,6 @@
                 if(document.getElementById('history-view').style.display === 'block') renderHistory();
             }
         }
-
         function deleteTransaction() {
             if(!confirm("Are you sure?")) return;
             let currentTrans = getCurrentTransactions();
@@ -575,57 +569,213 @@
             if(document.getElementById('history-view').style.display === 'block') renderHistory();
         }
 
-        // --- CALENDAR ---
         function openCalendar() {
             document.getElementById('calendar-modal').style.display = 'flex';
             const parts = activeFilterDateKey.split('.');
             tempSelectedDate = new Date(parts[2], parts[1]-1, parts[0]);
             calMonth = tempSelectedDate.getMonth(); calYear = tempSelectedDate.getFullYear();
-            renderCalendar();
-            updateSelectedDateDisplay();
+            renderCalendar(document.getElementById('days-container'), document.getElementById('cal-month-year'));
         }
         function closeCalendar() { document.getElementById('calendar-modal').style.display = 'none'; }
         function changeMonth(dir) {
             calMonth += dir;
-            if(calMonth > 11) { calMonth = 0; calYear++; }
-            else if (calMonth < 0) { calMonth = 11; calYear--; }
-            renderCalendar();
+            if(calMonth > 11) { calMonth = 0; calYear++; } else if (calMonth < 0) { calMonth = 11; calYear--; }
+            renderCalendar(document.getElementById('days-container'), document.getElementById('cal-month-year'));
         }
-        function renderCalendar() {
-            const container = document.getElementById('days-container'); container.innerHTML = '';
+        function applyDateFilter() { activeFilterDateKey = formatDateKey(tempSelectedDate); renderHistory(); closeCalendar(); }
+
+        // ==========================================
+        // 2. MASTER CASH LOGIC
+        // ==========================================
+        let masterCashTransactions = [];
+        let mcActiveDateKey = formatDateKey(new Date());
+        let mcEditingUuid = null;
+        let mcCurrentType = 'deposit';
+        let mcTempSelectedDate = new Date();
+        let mcCalMonth = new Date().getMonth();
+        let mcCalYear = new Date().getFullYear();
+
+        function openMasterCash() {
+            document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('master-cash-view').style.display = 'block';
+            renderMCTable();
+        }
+        function exitMasterCash() {
+            document.getElementById('master-cash-view').style.display = 'none';
+            document.getElementById('main-menu').style.display = 'grid';
+        }
+        function loadMasterCashData() {
+            const saved = localStorage.getItem('master_cash_data_v2');
+            masterCashTransactions = saved ? JSON.parse(saved) : [];
+        }
+        function saveMasterCashData() { localStorage.setItem('master_cash_data_v2', JSON.stringify(masterCashTransactions)); }
+
+        function renderMCTable() {
+            const dayTrans = masterCashTransactions.filter(t => t.dateString === mcActiveDateKey);
+            dayTrans.sort((a, b) => a.timestamp - b.timestamp);
+            const tbody = document.getElementById('mc-ledger-body');
+            tbody.innerHTML = '';
+            let totalDep = 0; let totalWith = 0;
+            document.getElementById('mc-current-date-display').innerText = (mcActiveDateKey === formatDateKey(new Date())) ? "Today" : mcActiveDateKey;
+            dayTrans.forEach(t => {
+                const tr = document.createElement('tr');
+                tr.className = 't-row-filled';
+                tr.onclick = () => openMCDetailsModal(t.uuid);
+                if(t.type === 'deposit') {
+                    totalDep += t.amount;
+                    tr.innerHTML = `<td class="text-black">${formatMoney(t.amount)}</td><td></td>`;
+                } else {
+                    totalWith += t.amount;
+                    tr.innerHTML = `<td></td><td class="text-black">${formatMoney(t.amount)}</td>`;
+                }
+                tbody.appendChild(tr);
+            });
+            document.getElementById('mc-total-dep-display').innerText = formatMoney(totalDep);
+            document.getElementById('mc-total-with-display').innerText = formatMoney(totalWith);
+            const balance = totalDep - totalWith;
+            const balEl = document.getElementById('mc-ledger-balance');
+            balEl.innerText = formatMoney(balance) + " Re";
+            balEl.className = balance < 0 ? "text-red" : "text-black";
+        }
+        function openMCAddModal(type) {
+            mcCurrentType = type;
+            document.getElementById('mc-add-modal-title').innerText = type === 'deposit' ? 'Add Deposit (+)' : 'Add Withdraw (-)';
+            document.getElementById('mc-add-amount-input').value = '';
+            document.getElementById('mc-add-modal').style.display = 'flex';
+            document.getElementById('mc-add-amount-input').focus();
+        }
+        function closeMCAddModal() { document.getElementById('mc-add-modal').style.display = 'none'; }
+        function processMCTransaction() {
+            const amt = parseFloat(document.getElementById('mc-add-amount-input').value);
+            if(isNaN(amt) || amt <= 0) { alert("Invalid amount"); return; }
+            const now = new Date();
+            const newT = {
+                uuid: Date.now() + Math.random().toString(36).substr(2, 9),
+                type: mcCurrentType, amount: amt, dateString: mcActiveDateKey,
+                timeString: formatTime(now), timestamp: now.getTime()
+            };
+            masterCashTransactions.push(newT);
+            saveMasterCashData();
+            closeMCAddModal();
+            renderMCTable();
+        }
+        function openMCDetailsModal(uuid) {
+            const t = masterCashTransactions.find(x => x.uuid === uuid);
+            if(!t) return;
+            mcEditingUuid = uuid;
+            document.getElementById('mc-detail-time').innerText = `${t.dateString} - ${t.timeString}`;
+            document.getElementById('mc-detail-type').innerText = t.type.toUpperCase();
+            const amtEl = document.getElementById('mc-detail-amount');
+            amtEl.innerText = formatMoney(t.amount);
+            amtEl.className = t.type === 'deposit' ? 'detail-value text-green' : 'detail-value text-red';
+            document.getElementById('mc-details-modal').style.display = 'flex';
+        }
+        function closeMCDetailsModal() { document.getElementById('mc-details-modal').style.display = 'none'; }
+        function switchToMCEdit() {
+            closeMCDetailsModal();
+            const t = masterCashTransactions.find(x => x.uuid === mcEditingUuid);
+            if(t) {
+                document.getElementById('mc-edit-amount-input').value = t.amount;
+                document.getElementById('mc-edit-modal').style.display = 'flex';
+            }
+        }
+        function closeMCEditModal() { document.getElementById('mc-edit-modal').style.display = 'none'; }
+        function saveMCEditTransaction() {
+            const newAmt = parseFloat(document.getElementById('mc-edit-amount-input').value);
+            if(isNaN(newAmt) || newAmt <= 0) return;
+            const idx = masterCashTransactions.findIndex(x => x.uuid === mcEditingUuid);
+            if(idx !== -1) {
+                masterCashTransactions[idx].amount = newAmt;
+                saveMasterCashData();
+                closeMCEditModal();
+                renderMCTable();
+            }
+        }
+        function deleteMCTransaction() {
+            if(!confirm("Delete this entry?")) return;
+            masterCashTransactions = masterCashTransactions.filter(x => x.uuid !== mcEditingUuid);
+            saveMasterCashData();
+            closeMCDetailsModal();
+            renderMCTable();
+        }
+        function openMCCalendar() {
+            document.getElementById('mc-calendar-modal').style.display = 'flex';
+            const parts = mcActiveDateKey.split('.');
+            mcTempSelectedDate = new Date(parts[2], parts[1]-1, parts[0]);
+            mcCalMonth = mcTempSelectedDate.getMonth(); mcCalYear = mcTempSelectedDate.getFullYear();
+            renderMCCalendar();
+        }
+        function closeMCCalendar() { document.getElementById('mc-calendar-modal').style.display = 'none'; }
+        function changeMCMonth(d) {
+            mcCalMonth += d;
+            if(mcCalMonth > 11) { mcCalMonth = 0; mcCalYear++; } else if (mcCalMonth < 0) { mcCalMonth = 11; mcCalYear--; }
+            renderMCCalendar();
+        }
+        function renderMCCalendar() {
+            const con = document.getElementById('mc-days-container'); con.innerHTML = '';
             const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-            document.getElementById('cal-month-year').innerText = `${months[calMonth]} ${calYear}`;
+            document.getElementById('mc-cal-month-year').innerText = `${months[mcCalMonth]} ${mcCalYear}`;
+            const firstDay = new Date(mcCalYear, mcCalMonth, 1).getDay();
+            const daysInMonth = new Date(mcCalYear, mcCalMonth+1, 0).getDate();
+            for(let i=0; i<firstDay; i++) con.innerHTML += '<div class="day-cell"></div>';
+            for(let i=1; i<=daysInMonth; i++) {
+                const div = document.createElement('div'); div.className = 'day-cell'; div.innerText = i;
+                if(i === mcTempSelectedDate.getDate() && mcCalMonth === mcTempSelectedDate.getMonth() && mcCalYear === mcTempSelectedDate.getFullYear()) div.classList.add('selected');
+                div.onclick = () => { mcTempSelectedDate = new Date(mcCalYear, mcCalMonth, i); renderMCCalendar(); };
+                con.appendChild(div);
+            }
+        }
+        function applyMCDateFilter() { mcActiveDateKey = formatDateKey(mcTempSelectedDate); closeMCCalendar(); renderMCTable(); }
+
+        // ==========================================
+        // UTILS (FIXED FOR CARDS)
+        // ==========================================
+        function renderCalendar(container, titleEl) {
+            container.innerHTML = '';
+            const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+            titleEl.innerText = `${months[calMonth]} ${calYear}`;
             const firstDay = new Date(calYear, calMonth, 1).getDay();
             const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
             for(let i=0; i<firstDay; i++) container.innerHTML += '<div class="day-cell"></div>';
             for(let i=1; i<=daysInMonth; i++) {
                 const cell = document.createElement('div'); cell.className = 'day-cell'; cell.innerText = i;
                 if(i === tempSelectedDate.getDate() && calMonth === tempSelectedDate.getMonth() && calYear === tempSelectedDate.getFullYear()) cell.classList.add('selected');
-                cell.onclick = function() { tempSelectedDate = new Date(calYear, calMonth, i); renderCalendar(); updateSelectedDateDisplay(); };
+                cell.onclick = function() { tempSelectedDate = new Date(calYear, calMonth, i); renderCalendar(container, titleEl); };
                 container.appendChild(cell);
             }
         }
-        function updateSelectedDateDisplay() { 
-            const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-            document.getElementById('cal-selected-display').innerText = `${months[tempSelectedDate.getMonth()]} ${tempSelectedDate.getDate()}, ${tempSelectedDate.getFullYear()}`;
-        }
-        function applyDateFilter() { activeFilterDateKey = formatDateKey(tempSelectedDate); renderHistory(); closeCalendar(); }
-
-        // --- UTILS ---
+        
+        // --- FIXED HTML GENERATOR ---
         function createTransHTML(t) {
             const isDep = t.type === 'deposit';
+            // Create random IDs if undefined (Handles old data issue)
+            const shortId = t.id || Math.floor(Math.random() * 1000);
+            const longId = t.longId || Math.floor(1000000000 + Math.random() * 9000000000);
+
             return `
             <div class="transaction-item" onclick="openEditModal('${t.uuid}')">
-                <div class="trans-icon ${isDep ? 'icon-deposit' : 'icon-withdraw'}"><i class="fas ${isDep ? 'fa-arrow-down' : 'fa-arrow-up'}"></i></div>
-                <div class="trans-details"><div class="trans-id">№...${t.id}</div><div class="trans-sub">ID ${t.longId}</div></div>
-                <div class="trans-amount"><span class="amount-val text-black">${isDep ? '+' : ''}${t.type === 'withdraw' ? '-' : ''}${formatMoney(t.amount)} Re</span><span class="amount-date">${t.dateString} / ${t.timeString}</span></div>
+                <div class="trans-left-group">
+                    <div class="trans-icon ${isDep ? 'icon-deposit' : 'icon-withdraw'}">
+                        <i class="fas ${isDep ? 'fa-arrow-down' : 'fa-arrow-up'}"></i>
+                    </div>
+                    <div class="trans-details">
+                        <div class="trans-id">№...${shortId}</div>
+                        <div class="trans-sub">ID ${longId}</div>
+                    </div>
+                </div>
+                <div class="trans-right-group">
+                    <div class="amount-val ${isDep ? 'text-green' : 'text-black'}">
+                        ${isDep ? '+' : ''}${t.type === 'withdraw' ? '-' : ''}${formatMoney(t.amount)} Re
+                    </div>
+                    <div class="amount-date">${t.dateString} / ${t.timeString}</div>
+                </div>
             </div>`;
         }
-        function formatMoney(n) { return n.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$& '); }
+        
+        function formatMoney(n) { return n.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
         function pad(n) { return n < 10 ? '0'+n : n; }
         function formatDateKey(date) { return `${pad(date.getDate())}.${pad(date.getMonth()+1)}.${date.getFullYear()}`; }
         function formatTime(date) { return `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`; }
-
     </script>
 </body>
 </html>
