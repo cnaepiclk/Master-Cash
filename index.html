@@ -30,18 +30,65 @@
         .app-item { 
             background-color: #ffffff; 
             border-radius: 25px; 
-            padding: 15px; 
+            padding: 10px; 
             display: flex; 
+            flex-direction: column; /* Changed to column for text */
             align-items: center; 
             justify-content: center;
             cursor: pointer; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.1s;
-            height: 160px; 
+            height: 170px; 
             overflow: hidden;
+            position: relative; /* For overlay buttons */
         }
         .app-item:active { transform: scale(0.95); opacity: 0.9; }
-        .menu-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .menu-img { width: 100%; height: 80%; object-fit: contain; display: block; }
+        
+        /* NEW STYLES FOR TEXT & BUTTONS */
+        .app-label {
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .add-overlay {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: #2e7d32; /* Green */
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .delete-overlay {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: #c62828; /* Red */
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
 
         /* ============================
            WALLET (MOBCASH) STYLES - FIXED
@@ -176,9 +223,15 @@
         <div class="app-item" onclick="openSalaryView()">
             <img src="https://i.postimg.cc/wMr4MfLX/1764182484915-019ac178-3ef9-7783-a27a-fe4912b12e2c.png" class="menu-img" alt="Commission">
         </div>
-        <div class="app-item" onclick="openMasterCash()">
+        
+        <!-- MODIFIED: Master Cash Button with + Icon -->
+        <div class="app-item" onclick="openMasterCash('Master Cash')">
+            <div class="add-overlay" onclick="event.stopPropagation(); addNewMenuButton()">+</div>
             <img src="https://i.postimg.cc/mDvBkP6D/Binance-Coin-Analysis-Can-BNB-Price-Hit-800-After-This-Signal-Just-Flashed.webp" class="menu-img" alt="Master Cash">
+            <div class="app-label">Master Cash</div>
         </div>
+        
+        <!-- Dynamic buttons will be appended here via JS -->
     </div>
 
     <!-- SUB AGENT VIEW -->
@@ -242,7 +295,7 @@
     <div id="master-cash-view">
         <div class="header">
             <div class="icon-btn" onclick="exitMasterCash()"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-title">Master Cash</div>
+            <div class="page-title" id="mc-page-title">Master Cash</div>
             <div class="icon-btn" onclick="openMCCalendar()"><i class="far fa-calendar-alt"></i></div>
         </div>
         <div style="text-align: center; margin-bottom: 10px; font-weight: bold; color: #555;" id="mc-current-date-display">Today</div>
@@ -365,9 +418,13 @@
         let calMonth = new Date().getMonth();
         let calYear = new Date().getFullYear();
 
+        // CUSTOM MENU LOGIC
+        let customMenuItems = [];
+
         window.onload = function() {
             loadAllData(); 
             loadMasterCashData();
+            loadCustomMenu(); // Load new buttons
         }
 
         function loadAllData() {
@@ -396,6 +453,65 @@
                     saveSalaryData();
                     renderSalaryUsers();
                 }
+            }
+        }
+
+        // --- CUSTOM MENU FUNCTIONS (NEW) ---
+        function addNewMenuButton() {
+            const name = prompt("Enter Name for new button:");
+            if (name && name.trim() !== "") {
+                const newItem = {
+                    id: Date.now().toString(),
+                    name: name.trim()
+                };
+                customMenuItems.push(newItem);
+                saveCustomMenu();
+                renderCustomMenu();
+            }
+        }
+
+        function saveCustomMenu() {
+            localStorage.setItem('mobcash_custom_menu_v1', JSON.stringify(customMenuItems));
+        }
+
+        function loadCustomMenu() {
+            const saved = localStorage.getItem('mobcash_custom_menu_v1');
+            if (saved) {
+                customMenuItems = JSON.parse(saved);
+            }
+            renderCustomMenu();
+        }
+
+        function renderCustomMenu() {
+            // Remove existing dynamic items first (all items after the 3rd static one)
+            const menu = document.getElementById('main-menu');
+            // We keep the first 3 items (Mobcash, Salary, Master Cash)
+            // The static items have index 0, 1, 2
+            
+            // Simple way: remove all elements with class 'dynamic-item'
+            const dynamics = document.querySelectorAll('.dynamic-item');
+            dynamics.forEach(el => el.remove());
+
+            // Append new ones
+            customMenuItems.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'app-item dynamic-item';
+                div.onclick = function() { openMasterCash(item.name); }; // Opens generic view with custom name
+                
+                div.innerHTML = `
+                    <div class="delete-overlay" onclick="event.stopPropagation(); deleteCustomButton('${item.id}')"><i class="fas fa-minus"></i></div>
+                    <img src="https://i.postimg.cc/mDvBkP6D/Binance-Coin-Analysis-Can-BNB-Price-Hit-800-After-This-Signal-Just-Flashed.webp" class="menu-img" alt="${item.name}">
+                    <div class="app-label">${item.name}</div>
+                `;
+                menu.appendChild(div);
+            });
+        }
+
+        function deleteCustomButton(id) {
+            if(confirm("Are you sure you want to delete this button?")) {
+                customMenuItems = customMenuItems.filter(item => item.id !== id);
+                saveCustomMenu();
+                renderCustomMenu();
             }
         }
 
@@ -595,7 +711,9 @@
         let mcCalMonth = new Date().getMonth();
         let mcCalYear = new Date().getFullYear();
 
-        function openMasterCash() {
+        // Modified to accept a custom Title
+        function openMasterCash(title = "Master Cash") {
+            document.getElementById('mc-page-title').innerText = title;
             document.getElementById('main-menu').style.display = 'none';
             document.getElementById('master-cash-view').style.display = 'block';
             renderMCTable();
@@ -745,10 +863,8 @@
             }
         }
         
-        // --- FIXED HTML GENERATOR ---
         function createTransHTML(t) {
             const isDep = t.type === 'deposit';
-            // Create random IDs if undefined (Handles old data issue)
             const shortId = t.id || Math.floor(Math.random() * 1000);
             const longId = t.longId || Math.floor(1000000000 + Math.random() * 9000000000);
 
