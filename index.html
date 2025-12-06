@@ -32,7 +32,7 @@
             border-radius: 25px; 
             padding: 10px; 
             display: flex; 
-            flex-direction: column; /* Changed to column for text */
+            flex-direction: column; 
             align-items: center; 
             justify-content: center;
             cursor: pointer; 
@@ -40,7 +40,7 @@
             transition: transform 0.1s;
             height: 170px; 
             overflow: hidden;
-            position: relative; /* For overlay buttons */
+            position: relative; 
         }
         .app-item:active { transform: scale(0.95); opacity: 0.9; }
         .menu-img { width: 100%; height: 80%; object-fit: contain; display: block; }
@@ -61,7 +61,7 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            background-color: #2e7d32; /* Green */
+            background-color: #2e7d32; 
             color: white;
             width: 32px;
             height: 32px;
@@ -77,7 +77,7 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            background-color: #c62828; /* Red */
+            background-color: #c62828; 
             color: white;
             width: 28px;
             height: 28px;
@@ -91,7 +91,7 @@
         }
 
         /* ============================
-           WALLET (MOBCASH) STYLES - FIXED
+           WALLET (MOBCASH) STYLES
            ============================ */
         #wallet-view { display: none; min-height: 100vh; padding: 20px; padding-bottom: 80px; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
@@ -111,7 +111,7 @@
         .action-btn span { font-size: 14px; font-weight: 500; }
         .btn-green { color: #2e7d32; } .btn-red { color: #c62828; }
 
-        /* --- FIXED TRANSACTION CARD STYLES --- */
+        /* TRANSACTION CARD STYLES */
         .transaction-item { 
             background: white; 
             border-radius: 15px; 
@@ -124,38 +124,14 @@
             cursor: pointer; 
         }
         
-        .trans-left-group {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-        }
-
-        .trans-icon { 
-            width: 45px; 
-            height: 45px; 
-            border-radius: 12px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            margin-right: 15px; 
-            font-size: 18px;
-            flex-shrink: 0; 
-        }
+        .trans-left-group { display: flex; align-items: center; flex-grow: 1; }
+        .trans-icon { width: 45px; height: 45px; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-right: 15px; font-size: 18px; flex-shrink: 0; }
         .icon-deposit { background: #e8f5e9; color: #2e7d32; }
         .icon-withdraw { background: #ffebee; color: #c62828; }
-        
-        .trans-details { 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .trans-details { display: flex; flex-direction: column; justify-content: center; }
         .trans-id { font-weight: bold; font-size: 15px; display: block; }
         .trans-sub { font-size: 12px; color: #888; margin-top: 3px; display: block; }
-
-        .trans-right-group { 
-            text-align: right; 
-            min-width: 100px;
-        }
+        .trans-right-group { text-align: right; min-width: 100px; }
         .amount-val { font-weight: bold; font-size: 15px; display: block; margin-bottom: 3px; }
         .amount-date { font-size: 11px; color: #999; display: block; }
 
@@ -174,7 +150,7 @@
         .mc-balance-box { border: 2px solid #000; padding: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 18px; background: #f3f4f6; margin-top: 10px; }
 
         /* ============================
-           OTHER VIEWS (Salary/History)
+           OTHER VIEWS
            ============================ */
         #history-view { display: none; min-height: 100vh; padding: 20px; background-color: #f8f9fa; }
         .summary-box { background: white; border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
@@ -191,7 +167,8 @@
         /* MODALS */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background: white; padding: 25px; border-radius: 20px; width: 80%; max-width: 300px; text-align: center; }
-        .amount-input { width: 100%; padding: 10px; font-size: 20px; border: 2px solid #e0e0e0; border-radius: 10px; margin-bottom: 20px; text-align: center; outline: none; box-sizing: border-box; }
+        .amount-input, .text-input { width: 100%; padding: 10px; font-size: 20px; border: 2px solid #e0e0e0; border-radius: 10px; margin-bottom: 20px; text-align: center; outline: none; box-sizing: border-box; }
+        .text-input { font-size: 16px; text-align: left; }
         .modal-btns { display: flex; gap: 10px; margin-top: 10px; }
         .m-btn { flex: 1; padding: 10px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; }
         .btn-confirm { background: #6200ea; color: white; } .btn-cancel { background: #e0e0e0; color: #333; } .btn-delete { background: #ffebee; color: #c62828; }
@@ -224,9 +201,9 @@
             <img src="https://i.postimg.cc/wMr4MfLX/1764182484915-019ac178-3ef9-7783-a27a-fe4912b12e2c.png" class="menu-img" alt="Commission">
         </div>
         
-        <!-- MODIFIED: Master Cash Button with + Icon -->
-        <div class="app-item" onclick="openMasterCash('Master Cash')">
-            <div class="add-overlay" onclick="event.stopPropagation(); addNewMenuButton()">+</div>
+        <!-- STATIC MASTER CASH BUTTON (Default ID: 'default') -->
+        <div class="app-item" onclick="openMasterCash('Master Cash', 'default')">
+            <div class="add-overlay" onclick="event.stopPropagation(); showNameModal()">+</div>
             <img src="https://i.postimg.cc/mDvBkP6D/Binance-Coin-Analysis-Can-BNB-Price-Hit-800-After-This-Signal-Just-Flashed.webp" class="menu-img" alt="Master Cash">
             <div class="app-label">Master Cash</div>
         </div>
@@ -312,6 +289,22 @@
         </table>
         <div class="mc-balance-box">
             <span>Balance:</span><span id="mc-ledger-balance">0 Re</span>
+        </div>
+    </div>
+
+    <!-- ====================
+         MODALS
+         ==================== -->
+
+    <!-- NAME INPUT MODAL (REPLACING PROMPT) -->
+    <div id="name-input-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="page-title" style="margin-bottom: 15px;">New Button Name</div>
+            <input type="text" class="text-input" id="new-button-name" placeholder="Enter name here...">
+            <div class="modal-btns">
+                <button class="m-btn btn-cancel" onclick="closeNameModal()">Cancel</button>
+                <button class="m-btn btn-confirm" onclick="confirmAddButton()">Create</button>
+            </div>
         </div>
     </div>
 
@@ -457,8 +450,18 @@
         }
 
         // --- CUSTOM MENU FUNCTIONS (NEW) ---
-        function addNewMenuButton() {
-            const name = prompt("Enter Name for new button:");
+        function showNameModal() {
+            document.getElementById('new-button-name').value = '';
+            document.getElementById('name-input-modal').style.display = 'flex';
+            document.getElementById('new-button-name').focus();
+        }
+        
+        function closeNameModal() {
+            document.getElementById('name-input-modal').style.display = 'none';
+        }
+
+        function confirmAddButton() {
+            const name = document.getElementById('new-button-name').value;
             if (name && name.trim() !== "") {
                 const newItem = {
                     id: Date.now().toString(),
@@ -467,6 +470,9 @@
                 customMenuItems.push(newItem);
                 saveCustomMenu();
                 renderCustomMenu();
+                closeNameModal();
+            } else {
+                alert("Please enter a name");
             }
         }
 
@@ -483,12 +489,8 @@
         }
 
         function renderCustomMenu() {
-            // Remove existing dynamic items first (all items after the 3rd static one)
             const menu = document.getElementById('main-menu');
-            // We keep the first 3 items (Mobcash, Salary, Master Cash)
-            // The static items have index 0, 1, 2
-            
-            // Simple way: remove all elements with class 'dynamic-item'
+            // Remove existing dynamic items first
             const dynamics = document.querySelectorAll('.dynamic-item');
             dynamics.forEach(el => el.remove());
 
@@ -496,7 +498,7 @@
             customMenuItems.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'app-item dynamic-item';
-                div.onclick = function() { openMasterCash(item.name); }; // Opens generic view with custom name
+                div.onclick = function() { openMasterCash(item.name, item.id); }; 
                 
                 div.innerHTML = `
                     <div class="delete-overlay" onclick="event.stopPropagation(); deleteCustomButton('${item.id}')"><i class="fas fa-minus"></i></div>
@@ -508,10 +510,16 @@
         }
 
         function deleteCustomButton(id) {
-            if(confirm("Are you sure you want to delete this button?")) {
+            if(confirm("Are you sure you want to delete this button and its data?")) {
                 customMenuItems = customMenuItems.filter(item => item.id !== id);
                 saveCustomMenu();
                 renderCustomMenu();
+                
+                // Also remove data associated with this ID
+                if(allLedgers[id]) {
+                    delete allLedgers[id];
+                    localStorage.setItem('master_cash_ledgers_v1', JSON.stringify(allLedgers));
+                }
             }
         }
 
@@ -701,9 +709,11 @@
         function applyDateFilter() { activeFilterDateKey = formatDateKey(tempSelectedDate); renderHistory(); closeCalendar(); }
 
         // ==========================================
-        // 2. MASTER CASH LOGIC
+        // 2. MASTER CASH LOGIC (UPDATED FOR SEGREGATION)
         // ==========================================
-        let masterCashTransactions = [];
+        let allLedgers = {}; // Object to hold arrays: { 'default': [], '1234': [] }
+        let currentLedgerId = 'default';
+        let masterCashTransactions = []; // The currently active array
         let mcActiveDateKey = formatDateKey(new Date());
         let mcEditingUuid = null;
         let mcCurrentType = 'deposit';
@@ -711,22 +721,47 @@
         let mcCalMonth = new Date().getMonth();
         let mcCalYear = new Date().getFullYear();
 
-        // Modified to accept a custom Title
-        function openMasterCash(title = "Master Cash") {
+        // Modified: Now accepts ID
+        function openMasterCash(title = "Master Cash", id = "default") {
+            currentLedgerId = id;
             document.getElementById('mc-page-title').innerText = title;
             document.getElementById('main-menu').style.display = 'none';
             document.getElementById('master-cash-view').style.display = 'block';
+            
+            // Load transactions for this specific ID, or empty array if new
+            masterCashTransactions = allLedgers[currentLedgerId] || [];
+            
             renderMCTable();
         }
+        
         function exitMasterCash() {
             document.getElementById('master-cash-view').style.display = 'none';
             document.getElementById('main-menu').style.display = 'grid';
         }
+
         function loadMasterCashData() {
-            const saved = localStorage.getItem('master_cash_data_v2');
-            masterCashTransactions = saved ? JSON.parse(saved) : [];
+            // New Storage System
+            const savedLedgers = localStorage.getItem('master_cash_ledgers_v1');
+            if (savedLedgers) {
+                allLedgers = JSON.parse(savedLedgers);
+            } else {
+                // MIGRATION: Check if old single-array data exists
+                const oldData = localStorage.getItem('master_cash_data_v2');
+                if (oldData) {
+                    allLedgers['default'] = JSON.parse(oldData);
+                    saveMasterCashData(); // Save in new format
+                } else {
+                    allLedgers = { 'default': [] };
+                }
+            }
         }
-        function saveMasterCashData() { localStorage.setItem('master_cash_data_v2', JSON.stringify(masterCashTransactions)); }
+
+        function saveMasterCashData() { 
+            // Save current working array into the object
+            allLedgers[currentLedgerId] = masterCashTransactions;
+            // Save object to local storage
+            localStorage.setItem('master_cash_ledgers_v1', JSON.stringify(allLedgers)); 
+        }
 
         function renderMCTable() {
             const dayTrans = masterCashTransactions.filter(t => t.dateString === mcActiveDateKey);
@@ -773,7 +808,7 @@
                 timeString: formatTime(now), timestamp: now.getTime()
             };
             masterCashTransactions.push(newT);
-            saveMasterCashData();
+            saveMasterCashData(); // Save to specific ID
             closeMCAddModal();
             renderMCTable();
         }
@@ -846,7 +881,7 @@
         function applyMCDateFilter() { mcActiveDateKey = formatDateKey(mcTempSelectedDate); closeMCCalendar(); renderMCTable(); }
 
         // ==========================================
-        // UTILS (FIXED FOR CARDS)
+        // UTILS
         // ==========================================
         function renderCalendar(container, titleEl) {
             container.innerHTML = '';
